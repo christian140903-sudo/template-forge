@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ship faster with AI-powered development tools. Build, deploy, and scale your SaaS product in record time.">
+    <meta name="keywords" content="SaaS, startup, development tools, AI, cloud platform">
+    <meta name="author" content="NexTool">
+    <meta property="og:title" content="LaunchKit — Ship Faster, Scale Smarter">
+    <meta property="og:description" content="AI-powered development tools for modern SaaS teams.">
+    <meta property="og:type" content="website">
+    <title>LaunchKit — Ship Faster, Scale Smarter</title>
+    <!--
+    ============================================
+    STARTER-SAAS TEMPLATE by NexTool
+    ============================================
+    CUSTOMIZATION GUIDE:
+    - Colors: Edit CSS custom properties in :root
+    - Fonts: Replace font-family in :root
+    - Content: Replace placeholder text directly
+    - Images: Replace gradient placeholders with your images
+    - Pricing: Edit the pricing cards in the #pricing section
+    ============================================
+    -->
+    <style>
+        /* ==========================================
+           CSS CUSTOM PROPERTIES — Edit these to customize
+           ========================================== */
+        :root {
+            /* Primary Colors */
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+
+            /* Background Colors */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+
+            /* Text Colors */
+            --text-primary: #f0f0f5;
+            --text-secondary: #9494a8;
+            --text-muted: #5a5a70;
+
+            /* Borders */
+            --border: rgba(99, 102, 241, 0.15);
+            --border-hover: rgba(99, 102, 241, 0.35);
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            --gradient-text: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
+            --gradient-glow: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+
+            /* Typography */
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            /* Spacing */
+            --section-padding: clamp(4rem, 8vw, 8rem);
+            --container-max: 1200px;
+            --border-radius: 16px;
+            --border-radius-sm: 8px;
+
+            /* Transitions */
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ==========================================
+           RESET & BASE
+           ========================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 4vw, 3rem);
+        }
+
+        /* ==========================================
+           SCROLL ANIMATIONS
+           ========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition-smooth);
+            background: transparent;
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: 1px;
+            transition: width var(--transition-smooth);
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem !important;
+            background: var(--gradient-primary) !important;
+            border-radius: 999px;
+            color: white !important;
+            font-weight: 600 !important;
+            transition: transform var(--transition-bounce), box-shadow var(--transition-smooth) !important;
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        .nav-cta:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition-fast);
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 0 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-glow);
+            pointer-events: none;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            filter: blur(60px);
+            animation: float-shape 20s infinite ease-in-out;
+        }
+
+        .floating-shape:nth-child(1) {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            bottom: -50px;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .floating-shape:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: #e879f9;
+            top: 40%;
+            left: 50%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float-shape {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -40px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(15px, 35px) scale(1.03); }
+        }
+
+        .hero-grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--primary-light);
+            margin-bottom: 2rem;
+            animation: badge-pulse 3s infinite ease-in-out;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: dot-blink 2s infinite;
+        }
+
+        @keyframes badge-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.1); }
+            50% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+        }
+
+        @keyframes dot-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform var(--transition-bounce), box-shadow var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover::before { opacity: 1; }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* ==========================================
+           SOCIAL PROOF BAR
+           ========================================== */
+        .social-proof {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .social-proof-label {
+            text-align: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .logos-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            opacity: 0.4;
+        }
+
+        .logo-placeholder {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+           FEATURES SECTION
+           ========================================== */
+        .features {
+            padding: var(--section-padding) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-smooth);
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before { transform: scaleX(1); }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(99, 102, 241, 0.2);
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           PRICING SECTION
+           ========================================== */
+        .pricing {
+            padding: var(--section-padding) 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+        }
+
+        .pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-toggle-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-toggle-label.active { color: var(--text-primary); font-weight: 600; }
+
+        .toggle-switch {
+            width: 52px;
+            height: 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            transition: transform var(--transition-smooth);
+        }
+
+        .toggle-switch.active::after { transform: translateX(24px); }
+        .toggle-switch.active { border-color: var(--primary); }
+
+        .save-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.08) 0%, var(--bg-card) 100%);
+            transform: scale(1.02);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-4px);
+        }
+
+        .pricing-popular {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.3rem 1rem;
+            background: var(--gradient-primary);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: white;
+        }
+
+        .pricing-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-price .currency { font-size: 1.5rem; vertical-align: top; margin-right: 2px; }
+        .pricing-price .period { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+
+        .pricing-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-feature .check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .pricing-btn {
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .pricing-btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .pricing-btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .pricing-btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .pricing-btn-secondary:hover {
+            border-color: var(--border-hover);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* ==========================================
+           TESTIMONIALS SECTION
+           ========================================== */
+        .testimonials {
+            padding: var(--section-padding) 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-stars {
+            color: #f59e0b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           FAQ SECTION
+           ========================================== */
+        .faq {
+            padding: var(--section-padding) 0;
+            background: var(--bg-secondary);
+        }
+
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            transition: var(--transition-fast);
+        }
+
+        .faq-question:hover { color: var(--primary-light); }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            transition: transform var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--primary-light); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-smooth), padding var(--transition-smooth);
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           CTA SECTION
+           ========================================== */
+        .cta {
+            padding: var(--section-padding) 0;
+            position: relative;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: clamp(3rem, 6vw, 5rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+            animation: cta-glow 10s infinite linear;
+        }
+
+        @keyframes cta-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .cta-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+            max-width: 280px;
+        }
+
+        .footer-heading {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover { color: var(--primary-light); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom a {
+            color: var(--primary-light);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-bottom a:hover { color: var(--accent-light); }
+
+        /* ==========================================
+           MOBILE RESPONSIVE
+           ========================================== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+
+            .nav-links.open {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                padding: 1.5rem;
+                background: rgba(10, 10, 15, 0.95);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border);
+                gap: 1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .pricing-card.featured { transform: none; }
+            .pricing-card.featured:hover { transform: translateY(-4px); }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-grid > div:first-child {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo" aria-label="LaunchKit Home">LaunchKit</a>
+            <div class="nav-links" id="navLinks" role="menubar">
+                <a href="#features" role="menuitem">Features</a>
+                <a href="#pricing" role="menuitem">Pricing</a>
+                <a href="#testimonials" role="menuitem">Reviews</a>
+                <a href="#faq" role="menuitem">FAQ</a>
+                <a href="#cta" class="nav-cta" role="menuitem">Get Started Free</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-shapes" aria-hidden="true">
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+        </div>
+        <div class="hero-grid-pattern" aria-hidden="true"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge reveal">
+                    <span class="hero-badge-dot" aria-hidden="true"></span>
+                    Now in public beta
+                </div>
+                <h1 class="hero-title reveal reveal-delay-1">
+                    Ship faster with<br>
+                    <span class="gradient-text">AI-powered tools</span>
+                </h1>
+                <p class="hero-subtitle reveal reveal-delay-2">
+                    The all-in-one development platform that helps modern teams build, deploy, and scale their SaaS products in record time.
+                </p>
+                <div class="hero-buttons reveal reveal-delay-3">
+                    <a href="#pricing" class="btn-primary">
+                        Start Building Free
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        Watch Demo
+                    </a>
+                </div>
+                <div class="hero-stats reveal reveal-delay-4">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">12,000+</div>
+                        <div class="hero-stat-label">Active Users</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">99.9%</div>
+                        <div class="hero-stat-label">Uptime SLA</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">4.9/5</div>
+                        <div class="hero-stat-label">User Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SOCIAL PROOF
+         ========================================== -->
+    <section class="social-proof reveal">
+        <div class="container">
+            <p class="social-proof-label">Trusted by teams at leading companies</p>
+            <div class="logos-row">
+                <!-- Replace these with actual client logos -->
+                <span class="logo-placeholder">ACME</span>
+                <span class="logo-placeholder">QUANTUM</span>
+                <span class="logo-placeholder">NEXUS</span>
+                <span class="logo-placeholder">VERTEX</span>
+                <span class="logo-placeholder">PRISM</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FEATURES SECTION
+         ========================================== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Features</span>
+                <h2 class="section-title">Everything you need to ship fast</h2>
+                <p class="section-subtitle">Powerful tools designed to streamline your development workflow from idea to production.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon" aria-hidden="true">&#9889;</div>
+                    <h3 class="feature-title">Instant Deployments</h3>
+                    <p class="feature-desc">Push your code and watch it go live in seconds. Zero-downtime deployments with automatic rollbacks if anything goes wrong.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon" aria-hidden="true">&#128300;</div>
+                    <h3 class="feature-title">AI Code Review</h3>
+                    <p class="feature-desc">Get intelligent code suggestions, catch bugs before they reach production, and maintain consistent code quality across your team.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon" aria-hidden="true">&#128202;</div>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-desc">Monitor performance, track errors, and understand user behavior with built-in analytics that require zero configuration.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon" aria-hidden="true">&#128274;</div>
+                    <h3 class="feature-title">Enterprise Security</h3>
+                    <p class="feature-desc">SOC2 compliant with end-to-end encryption, SSO integration, and role-based access control to keep your data safe.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon" aria-hidden="true">&#129302;</div>
+                    <h3 class="feature-title">Workflow Automation</h3>
+                    <p class="feature-desc">Automate repetitive tasks with customizable workflows. Connect your favorite tools and let your pipeline run itself.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon" aria-hidden="true">&#127760;</div>
+                    <h3 class="feature-title">Global Edge Network</h3>
+                    <p class="feature-desc">Serve your application from 200+ edge locations worldwide for blazing-fast load times no matter where your users are.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PRICING SECTION
+         ========================================== -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Pricing</span>
+                <h2 class="section-title">Start free, scale as you grow</h2>
+                <p class="section-subtitle">No hidden fees. No credit card required. Upgrade when you are ready.</p>
+            </div>
+            <div class="pricing-toggle reveal">
+                <span class="pricing-toggle-label active" id="monthlyLabel">Monthly</span>
+                <div class="toggle-switch" id="pricingToggle" role="switch" aria-checked="false" aria-label="Toggle annual pricing" tabindex="0"></div>
+                <span class="pricing-toggle-label" id="annualLabel">Annual</span>
+                <span class="save-badge">Save 20%</span>
+            </div>
+            <div class="pricing-grid">
+                <!-- Starter Plan -->
+                <div class="pricing-card reveal">
+                    <div class="pricing-name">Starter</div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span><span class="price-value">0</span>
+                        <span class="period">/mo</span>
+                    </div>
+                    <p class="pricing-desc">Perfect for side projects and experiments.</p>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> 3 projects</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> 1 GB storage</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Basic analytics</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Community support</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Shared infrastructure</li>
+                    </ul>
+                    <a href="#" class="pricing-btn pricing-btn-secondary">Get Started Free</a>
+                </div>
+                <!-- Pro Plan -->
+                <div class="pricing-card featured reveal reveal-delay-1">
+                    <div class="pricing-popular">Most Popular</div>
+                    <div class="pricing-name">Pro</div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span><span class="price-value" data-monthly="29" data-annual="23">29</span>
+                        <span class="period">/mo</span>
+                    </div>
+                    <p class="pricing-desc">For growing teams who need more power.</p>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Unlimited projects</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> 100 GB storage</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Advanced analytics</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Priority support</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Custom domains</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> AI code review</li>
+                    </ul>
+                    <a href="#" class="pricing-btn pricing-btn-primary">Start Free Trial</a>
+                </div>
+                <!-- Enterprise Plan -->
+                <div class="pricing-card reveal reveal-delay-2">
+                    <div class="pricing-name">Enterprise</div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span><span class="price-value" data-monthly="99" data-annual="79">99</span>
+                        <span class="period">/mo</span>
+                    </div>
+                    <p class="pricing-desc">For organizations that need full control.</p>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Everything in Pro</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Unlimited storage</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> SSO &amp; SAML</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Dedicated support</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> SLA guarantee</li>
+                        <li class="pricing-feature"><span class="check" aria-hidden="true">&#10003;</span> Custom integrations</li>
+                    </ul>
+                    <a href="#" class="pricing-btn pricing-btn-secondary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         TESTIMONIALS SECTION
+         ========================================== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Testimonials</span>
+                <h2 class="section-title">Loved by developers worldwide</h2>
+                <p class="section-subtitle">See what teams are saying about building with LaunchKit.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"LaunchKit cut our deployment time from hours to minutes. Our team ships features 3x faster now and the AI code review catches issues we would have missed."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" aria-hidden="true">SR</div>
+                        <div>
+                            <div class="testimonial-name">Sarah Rodriguez</div>
+                            <div class="testimonial-role">CTO at Streamline</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"The analytics alone are worth the price. We finally understand how users interact with our product, and the edge network made our app feel instant globally."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" aria-hidden="true">MK</div>
+                        <div>
+                            <div class="testimonial-name">Marcus Kim</div>
+                            <div class="testimonial-role">Founder at DataPulse</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"Switching from our custom CI/CD pipeline to LaunchKit saved us $2,000/month in infrastructure costs and the developer experience is simply unmatched."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" aria-hidden="true">EP</div>
+                        <div>
+                            <div class="testimonial-name">Elena Petrova</div>
+                            <div class="testimonial-role">Lead Engineer at Nexwave</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ SECTION
+         ========================================== -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title">Frequently asked questions</h2>
+                <p class="section-subtitle">Got questions? We have answers. If you cannot find what you need, reach out to our support team.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        How does the free plan work?
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <div class="faq-answer-inner">
+                            Our free plan gives you access to 3 projects with 1 GB of storage. No credit card required, no time limits. You can upgrade to Pro at any time when you need more features or resources.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1">
+                    <button class="faq-question" aria-expanded="false">
+                        Can I cancel my subscription anytime?
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <div class="faq-answer-inner">
+                            Absolutely. You can cancel your subscription at any time from your dashboard. Your account will remain active until the end of your current billing period, and you will not be charged again.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2">
+                    <button class="faq-question" aria-expanded="false">
+                        Do you offer refunds?
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <div class="faq-answer-inner">
+                            Yes. If you are not satisfied with LaunchKit, we offer a full refund within 14 days of purchase. No questions asked. Just contact our support team and we will process it immediately.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-3">
+                    <button class="faq-question" aria-expanded="false">
+                        What tech stacks do you support?
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <div class="faq-answer-inner">
+                            LaunchKit supports all major frameworks including React, Next.js, Vue, Svelte, Astro, and more. We also support static sites, serverless functions, and Docker containers for full-stack applications.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-4">
+                    <button class="faq-question" aria-expanded="false">
+                        Is there an API available?
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" role="region">
+                        <div class="faq-answer-inner">
+                            Yes, we provide a comprehensive REST API and CLI tool for all Pro and Enterprise plans. You can automate deployments, manage projects, and integrate LaunchKit into your existing workflows.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CTA SECTION
+         ========================================== -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2 class="cta-title">Ready to ship your next big idea?</h2>
+                <p class="cta-subtitle">Join 12,000+ developers who build and deploy faster with LaunchKit. Start for free today.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-primary">
+                        Get Started Free
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#" class="btn-secondary">Talk to Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="nav-logo">LaunchKit</a>
+                    <p class="footer-brand-desc">The modern development platform for SaaS teams. Ship faster, scale smarter.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Product</h4>
+                    <div class="footer-links">
+                        <a href="#">Features</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Changelog</a>
+                        <a href="#">Documentation</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Company</h4>
+                    <div class="footer-links">
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Legal</h4>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 LaunchKit. All rights reserved.</span>
+                <span>Template by <a href="https://nextool.app" target="_blank" rel="noopener">NexTool</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+    <script>
+        /* ==========================================
+           INTERSECTION OBSERVER — Scroll Animations
+           ========================================== */
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        /* ==========================================
+           NAVBAR — Scroll State
+           ========================================== */
+        const nav = document.querySelector('.nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            nav.classList.toggle('scrolled', currentScroll > 50);
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        /* ==========================================
+           MOBILE MENU — Toggle
+           ========================================== */
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            mobileToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        /* ==========================================
+           PRICING TOGGLE — Monthly/Annual
+           ========================================== */
+        const pricingToggle = document.getElementById('pricingToggle');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const annualLabel = document.getElementById('annualLabel');
+        let isAnnual = false;
+
+        pricingToggle.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            pricingToggle.classList.toggle('active', isAnnual);
+            pricingToggle.setAttribute('aria-checked', isAnnual);
+            monthlyLabel.classList.toggle('active', !isAnnual);
+            annualLabel.classList.toggle('active', isAnnual);
+
+            document.querySelectorAll('.price-value').forEach(el => {
+                const monthly = el.dataset.monthly;
+                const annual = el.dataset.annual;
+                if (monthly && annual) {
+                    el.textContent = isAnnual ? annual : monthly;
+                }
+            });
+        });
+
+        pricingToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                pricingToggle.click();
+            }
+        });
+
+        /* ==========================================
+           FAQ ACCORDION
+           ========================================== */
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+
+                // Close all other items
+                document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                    if (openItem !== item) {
+                        openItem.classList.remove('open');
+                        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                item.classList.toggle('open', !isOpen);
+                btn.setAttribute('aria-expanded', !isOpen);
+            });
+        });
+
+        /* ==========================================
+           SMOOTH SCROLL — for anchor links
+           ========================================== */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const targetId = anchor.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        /* ==========================================
+           MAGNETIC BUTTON EFFECT (subtle)
+           ========================================== */
+        document.querySelectorAll('.btn-primary, .nav-cta').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

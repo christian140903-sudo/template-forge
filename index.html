@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TemplateForge — Premium Website Templates | One HTML File, Zero Dependencies</title>
+<meta name="description" content="Stunning, production-ready website templates. Each template is a single HTML file with zero dependencies. SaaS, Restaurant, Portfolio, Agency, E-Commerce. From $19.">
+<meta name="keywords" content="website templates, HTML templates, landing page templates, SaaS template, restaurant website, portfolio template, premium templates">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://christian140903-sudo.github.io/template-forge/">
+
+<meta property="og:title" content="TemplateForge — Premium Website Templates">
+<meta property="og:description" content="Stunning website templates. Single HTML file, zero dependencies. From $19.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christian140903-sudo.github.io/template-forge/">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050507;--surface:#0d0d12;--surface2:#141419;--border:rgba(255,255,255,.06);--text:#e5e5e5;--text2:#888;--accent:#6366f1;--accent2:#818cf8;--gold:#d4a574;--emerald:#10b981;--blue:#3b82f6;--pink:#ec4899;--red:#ef4444}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}
+
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* Background */
+.bg-noise{position:fixed;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none}
+.bg-gradient{position:fixed;top:-40%;left:30%;width:40%;height:60%;background:radial-gradient(ellipse,rgba(99,102,241,.06),transparent 70%);pointer-events:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:100;padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(16px) saturate(1.5);background:rgba(5,5,7,.8)}
+.logo{font-size:1.3rem;font-weight:800;letter-spacing:-.5px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:.6rem}
+.logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--pink));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:900;color:#fff}
+.nav-cta{background:var(--accent);color:#fff;padding:.6rem 1.4rem;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* Hero */
+.hero{text-align:center;padding:6rem 2rem 4rem;max-width:800px;margin:0 auto}
+.hero-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--accent2);background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);padding:.4rem 1rem;border-radius:20px;margin-bottom:2rem;font-weight:500}
+.hero h1{font-size:3.5rem;font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:1.5rem}
+.hero h1 span{background:linear-gradient(135deg,var(--accent2),var(--pink),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--text2);line-height:1.7;max-width:550px;margin:0 auto 2.5rem}
+.hero-features{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
+.hero-feat{display:flex;align-items:center;gap:.4rem;font-size:.9rem;color:var(--text2)}
+.hero-feat strong{color:var(--text)}
+
+/* Template Grid */
+.templates{max-width:1100px;margin:0 auto;padding:2rem 2rem 4rem}
+.section-title{text-align:center;font-size:1.5rem;font-weight:800;margin-bottom:3rem;letter-spacing:-.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem}
+
+/* Template Card */
+.tpl-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;animation:fadeIn .6s ease both}
+.tpl-card:nth-child(1){animation-delay:.05s}.tpl-card:nth-child(2){animation-delay:.1s}.tpl-card:nth-child(3){animation-delay:.15s}.tpl-card:nth-child(4){animation-delay:.2s}.tpl-card:nth-child(5){animation-delay:.25s}
+.tpl-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.5);border-color:rgba(255,255,255,.1)}
+
+.tpl-preview{height:200px;position:relative;overflow:hidden}
+.tpl-preview-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--text2)}
+.tpl-card:nth-child(1) .tpl-preview{background:linear-gradient(135deg,#1a1035,#0f172a,#0c0c1d)}
+.tpl-card:nth-child(2) .tpl-preview{background:linear-gradient(135deg,#1a0f0a,#1c1210,#0d0806)}
+.tpl-card:nth-child(3) .tpl-preview{background:linear-gradient(135deg,#050d07,#0a0f0c,#030805)}
+.tpl-card:nth-child(4) .tpl-preview{background:linear-gradient(135deg,#081020,#0c1428,#060c18)}
+.tpl-card:nth-child(5) .tpl-preview{background:linear-gradient(135deg,#061210,#0a1816,#040e0c)}
+
+.tpl-preview-badge{position:absolute;top:1rem;left:1rem;font-size:.7rem;font-weight:700;padding:.3rem .7rem;border-radius:6px;text-transform:uppercase;letter-spacing:.5px}
+.badge-popular{background:var(--accent);color:#fff}
+.badge-new{background:var(--emerald);color:#fff}
+
+.tpl-preview-mockup{position:absolute;inset:1.5rem;border-radius:8px;border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column}
+.mockup-bar{height:20px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;padding:0 8px;gap:4px}
+.mockup-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15)}
+.mockup-body{flex:1;padding:12px;display:flex;flex-direction:column;gap:6px}
+.mockup-line{height:6px;border-radius:3px;background:rgba(255,255,255,.06)}
+.mockup-line.w60{width:60%}.mockup-line.w80{width:80%}.mockup-line.w40{width:40%}.mockup-line.w100{width:100%}
+.mockup-block{height:40px;border-radius:6px;background:rgba(255,255,255,.04);margin-top:4px}
+
+.tpl-info{padding:1.5rem}
+.tpl-name{font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+.tpl-desc{font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
+.tpl-meta{display:flex;align-items:center;justify-content:space-between}
+.tpl-price{font-size:1.2rem;font-weight:800;color:var(--accent2)}
+.tpl-price del{font-size:.85rem;color:var(--text2);font-weight:400;margin-left:.3rem}
+.tpl-tags{display:flex;gap:.3rem}
+.tpl-tag{font-size:.65rem;padding:.15rem .5rem;border-radius:6px;background:rgba(255,255,255,.04);color:var(--text2)}
+
+.tpl-actions{padding:0 1.5rem 1.5rem;display:flex;gap:.75rem}
+.btn-preview{flex:1;padding:.7rem;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--text);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none}
+.btn-preview:hover{border-color:var(--accent);color:var(--accent2)}
+.btn-buy{flex:1;padding:.7rem;border:none;border-radius:8px;background:var(--accent);color:#fff;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none}
+.btn-buy:hover{background:var(--accent2);transform:translateY(-1px)}
+
+/* Bundle */
+.bundle{max-width:700px;margin:2rem auto 4rem;padding:2.5rem;background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(236,72,153,.08));border:1px solid rgba(99,102,241,.2);border-radius:20px;text-align:center}
+.bundle h2{font-size:1.8rem;font-weight:800;margin-bottom:.5rem}
+.bundle .savings{font-size:1rem;color:var(--emerald);font-weight:600;margin-bottom:1rem}
+.bundle p{color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
+.bundle-price{font-size:2.5rem;font-weight:900;margin-bottom:.25rem}
+.bundle-price del{font-size:1.2rem;color:var(--text2);font-weight:400;margin-left:.5rem}
+.bundle-btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--pink));color:#fff;padding:1rem 3rem;border-radius:12px;font-size:1.05rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .2s;margin-top:1rem}
+.bundle-btn:hover{transform:scale(1.03);box-shadow:0 8px 30px rgba(99,102,241,.4)}
+
+/* Features */
+.features{max-width:800px;margin:0 auto 4rem;padding:0 2rem}
+.features h2{text-align:center;font-size:1.5rem;font-weight:800;margin-bottom:2rem}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
+.feat-item{padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.feat-item h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.feat-item p{font-size:.8rem;color:var(--text2);line-height:1.6}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;color:var(--text2);font-size:.85rem}
+footer a{color:var(--accent2);text-decoration:none}
+
+/* Checkout Overlay */
+.checkout-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+.checkout-overlay.active{display:flex}
+.checkout-modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem;max-width:440px;width:90%;max-height:90vh;overflow-y:auto;position:relative}
+.checkout-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text2);font-size:1.5rem;cursor:pointer;padding:.5rem;line-height:1}
+.checkout-close:hover{color:var(--text)}
+.checkout-title{font-size:1.3rem;font-weight:800;margin-bottom:.5rem}
+.checkout-item{font-size:.9rem;color:var(--accent2);margin-bottom:1.5rem}
+.checkout-field{margin-bottom:1rem}
+.checkout-field label{display:block;font-size:.8rem;color:var(--text2);margin-bottom:.4rem;font-weight:500}
+.checkout-field input,.checkout-field textarea{width:100%;padding:.8rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s}
+.checkout-field input:focus,.checkout-field textarea:focus{border-color:var(--accent)}
+.checkout-field textarea{resize:vertical;min-height:80px}
+.checkout-pay{width:100%;padding:.9rem;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:.5rem}
+.checkout-pay:hover{background:var(--accent2)}
+.checkout-success{display:none;text-align:center;padding:2rem 0}
+.checkout-success h3{font-size:1.3rem;margin-bottom:.5rem;color:var(--emerald)}
+.checkout-success p{color:var(--text2);font-size:.9rem;line-height:1.6}
+
+@media(max-width:768px){
+  .hero h1{font-size:2.3rem}
+  .hero-features{flex-direction:column;align-items:center}
+  .grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg-noise"></div>
+<div class="bg-gradient"></div>
+
+<header>
+  <a href="/" class="logo"><div class="logo-mark">TF</div> TemplateForge</a>
+  <a href="#bundle" class="nav-cta">Get All 5 for $79</a>
+</header>
+
+<section class="hero">
+  <div class="hero-label">Premium Website Templates</div>
+  <h1>One HTML File.<br><span>Infinite Possibilities.</span></h1>
+  <p>Production-ready website templates. Each template is a single self-contained HTML file with zero external dependencies. Just open and customize.</p>
+  <div class="hero-features">
+    <div class="hero-feat"><strong>Single File</strong> — No build tools</div>
+    <div class="hero-feat"><strong>Responsive</strong> — All devices</div>
+    <div class="hero-feat"><strong>Animated</strong> — Micro-interactions</div>
+    <div class="hero-feat"><strong>SEO Ready</strong> — Meta tags included</div>
+  </div>
+</section>
+
+<section class="templates" id="templates">
+  <h2 class="section-title">Choose Your Template</h2>
+  <div class="grid">
+
+    <div class="tpl-card">
+      <div class="tpl-preview">
+        <span class="tpl-preview-badge badge-popular">Popular</span>
+        <div class="tpl-preview-mockup">
+          <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+          <div class="mockup-body">
+            <div class="mockup-line w60" style="background:rgba(99,102,241,.3)"></div>
+            <div class="mockup-line w80"></div>
+            <div class="mockup-line w40"></div>
+            <div class="mockup-block" style="background:rgba(99,102,241,.1)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-info">
+        <div class="tpl-name">Starter SaaS</div>
+        <div class="tpl-desc">Modern SaaS landing page with gradient hero, feature grid, pricing table, testimonials, and FAQ accordion.</div>
+        <div class="tpl-meta">
+          <div class="tpl-price">$29</div>
+          <div class="tpl-tags"><span class="tpl-tag">SaaS</span><span class="tpl-tag">Startup</span></div>
+        </div>
+      </div>
+      <div class="tpl-actions">
+        <a href="templates/starter-saas.html" class="btn-preview" target="_blank">Preview</a>
+        <button class="btn-buy" onclick="openCheckout('Starter SaaS Template','29')">Buy $29</button>
+      </div>
+    </div>
+
+    <div class="tpl-card">
+      <div class="tpl-preview">
+        <span class="tpl-preview-badge badge-new">New</span>
+        <div class="tpl-preview-mockup">
+          <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+          <div class="mockup-body">
+            <div class="mockup-line w60" style="background:rgba(212,165,116,.3)"></div>
+            <div class="mockup-line w80"></div>
+            <div class="mockup-block" style="background:rgba(212,165,116,.1)"></div>
+            <div class="mockup-line w40"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-info">
+        <div class="tpl-name">Gastro Restaurant</div>
+        <div class="tpl-desc">Elegant restaurant website with parallax hero, menu section, about story, reservation form, and gallery grid.</div>
+        <div class="tpl-meta">
+          <div class="tpl-price">$29</div>
+          <div class="tpl-tags"><span class="tpl-tag">Restaurant</span><span class="tpl-tag">Food</span></div>
+        </div>
+      </div>
+      <div class="tpl-actions">
+        <a href="templates/gastro-restaurant.html" class="btn-preview" target="_blank">Preview</a>
+        <button class="btn-buy" onclick="openCheckout('Gastro Restaurant Template','29')">Buy $29</button>
+      </div>
+    </div>
+
+    <div class="tpl-card">
+      <div class="tpl-preview">
+        <div class="tpl-preview-mockup">
+          <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+          <div class="mockup-body">
+            <div class="mockup-line w40" style="background:rgba(0,255,136,.3)"></div>
+            <div class="mockup-line w80"></div>
+            <div class="mockup-block" style="background:rgba(0,255,136,.08)"></div>
+            <div class="mockup-line w60"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-info">
+        <div class="tpl-name">Creative Portfolio</div>
+        <div class="tpl-desc">Dramatic portfolio with entrance animation, project grid with hover overlays, lightbox, and smooth scroll navigation.</div>
+        <div class="tpl-meta">
+          <div class="tpl-price">$19</div>
+          <div class="tpl-tags"><span class="tpl-tag">Portfolio</span><span class="tpl-tag">Creative</span></div>
+        </div>
+      </div>
+      <div class="tpl-actions">
+        <a href="templates/portfolio-creative.html" class="btn-preview" target="_blank">Preview</a>
+        <button class="btn-buy" onclick="openCheckout('Creative Portfolio Template','19')">Buy $19</button>
+      </div>
+    </div>
+
+    <div class="tpl-card">
+      <div class="tpl-preview">
+        <span class="tpl-preview-badge badge-popular">Popular</span>
+        <div class="tpl-preview-mockup">
+          <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+          <div class="mockup-body">
+            <div class="mockup-line w60" style="background:rgba(14,165,233,.3)"></div>
+            <div class="mockup-line w100"></div>
+            <div class="mockup-line w80"></div>
+            <div class="mockup-block" style="background:rgba(14,165,233,.08)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-info">
+        <div class="tpl-name">Digital Agency</div>
+        <div class="tpl-desc">Professional agency website with animated hero, services grid, process workflow, team section, and case studies.</div>
+        <div class="tpl-meta">
+          <div class="tpl-price">$29</div>
+          <div class="tpl-tags"><span class="tpl-tag">Agency</span><span class="tpl-tag">Business</span></div>
+        </div>
+      </div>
+      <div class="tpl-actions">
+        <a href="templates/agency-digital.html" class="btn-preview" target="_blank">Preview</a>
+        <button class="btn-buy" onclick="openCheckout('Digital Agency Template','29')">Buy $29</button>
+      </div>
+    </div>
+
+    <div class="tpl-card">
+      <div class="tpl-preview">
+        <span class="tpl-preview-badge badge-new">New</span>
+        <div class="tpl-preview-mockup">
+          <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div></div>
+          <div class="mockup-body">
+            <div class="mockup-line w80" style="background:rgba(16,185,129,.3)"></div>
+            <div class="mockup-block" style="background:rgba(16,185,129,.08)"></div>
+            <div class="mockup-line w60"></div>
+            <div class="mockup-line w40"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-info">
+        <div class="tpl-name">Shop E-Commerce</div>
+        <div class="tpl-desc">E-commerce landing with product showcase, featured items grid, categories, special offers, and trust badges.</div>
+        <div class="tpl-meta">
+          <div class="tpl-price">$29</div>
+          <div class="tpl-tags"><span class="tpl-tag">E-Commerce</span><span class="tpl-tag">Shop</span></div>
+        </div>
+      </div>
+      <div class="tpl-actions">
+        <a href="templates/shop-ecommerce.html" class="btn-preview" target="_blank">Preview</a>
+        <button class="btn-buy" onclick="openCheckout('Shop E-Commerce Template','29')">Buy $29</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bundle" id="bundle">
+  <h2>Get All 5 Templates</h2>
+  <div class="savings">Save $56 with the bundle</div>
+  <p>SaaS + Restaurant + Portfolio + Agency + E-Commerce. All 5 premium templates in one download. Lifetime updates included.</p>
+  <div class="bundle-price">$79 <del>$135</del></div>
+  <br>
+  <button class="bundle-btn" onclick="openCheckout('All 5 Templates Bundle','79')">Get the Bundle — $79</button>
+</section>
+
+<section class="features">
+  <h2>Why TemplateForge?</h2>
+  <div class="feat-grid">
+    <div class="feat-item">
+      <h3>Single HTML File</h3>
+      <p>No npm, no webpack, no dependencies. Each template is one file you can open in any browser.</p>
+    </div>
+    <div class="feat-item">
+      <h3>CSS Custom Properties</h3>
+      <p>Change colors, fonts, and spacing by editing a few variables at the top. No CSS knowledge needed.</p>
+    </div>
+    <div class="feat-item">
+      <h3>Mobile-First</h3>
+      <p>Every template looks perfect on phones, tablets, and desktops. Tested on real devices.</p>
+    </div>
+    <div class="feat-item">
+      <h3>Animations Built-In</h3>
+      <p>Scroll-triggered reveals, hover effects, and micro-interactions. No JavaScript libraries required.</p>
+    </div>
+    <div class="feat-item">
+      <h3>SEO Optimized</h3>
+      <p>Meta tags, Open Graph, Twitter Cards, and Schema.org markup included in every template.</p>
+    </div>
+    <div class="feat-item">
+      <h3>Lifetime Updates</h3>
+      <p>Buy once, get updates forever. We continuously improve and add new sections to each template.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>TemplateForge &mdash; A <a href="https://nextool.app">NexTool</a> product. Need a custom website? <a href="https://nextool.app/#pricing">We build those too</a>, from $29.</p>
+</footer>
+
+<!-- Checkout Overlay -->
+<div class="checkout-overlay" id="checkoutOverlay">
+  <div class="checkout-modal">
+    <button class="checkout-close" onclick="closeCheckout()">&times;</button>
+    <div id="checkoutForm">
+      <div class="checkout-title">Complete Purchase</div>
+      <div class="checkout-item" id="checkoutItem"></div>
+      <div class="checkout-field">
+        <label for="coName">Your Name</label>
+        <input type="text" id="coName" placeholder="John Doe" required>
+      </div>
+      <div class="checkout-field">
+        <label for="coEmail">Email (for delivery)</label>
+        <input type="email" id="coEmail" placeholder="john@example.com" required>
+      </div>
+      <button class="checkout-pay" id="checkoutPay">Pay with PayPal</button>
+      <p style="font-size:.75rem;color:var(--text2);text-align:center;margin-top:.8rem">After PayPal payment, download links will be sent to your email within 1 hour.</p>
+    </div>
+    <div class="checkout-success" id="checkoutSuccess">
+      <h3>Payment Initiated!</h3>
+      <p>After completing PayPal payment, you will receive your template download link at your email within 1 hour.</p>
+      <p style="margin-top:1rem;font-size:.8rem;color:var(--text2)">Questions? Contact us at nextool.app</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var PAYPAL_USERNAME = 'YOUR_PAYPAL_USERNAME';
+var currentItem = '';
+var currentPrice = '';
+
+function openCheckout(name, price) {
+  currentItem = name;
+  currentPrice = price;
+  document.getElementById('checkoutItem').textContent = name + ' — $' + price;
+  document.getElementById('checkoutForm').style.display = 'block';
+  document.getElementById('checkoutSuccess').style.display = 'none';
+  document.getElementById('checkoutOverlay').classList.add('active');
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('active');
+}
+
+document.getElementById('checkoutOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCheckout();
+});
+
+document.getElementById('checkoutPay').addEventListener('click', function() {
+  var name = document.getElementById('coName').value.trim();
+  var email = document.getElementById('coEmail').value.trim();
+  if (!name || !email) { alert('Please fill in your name and email.'); return; }
+  if (!email.includes('@')) { alert('Please enter a valid email.'); return; }
+
+  var orderId = 'TF-' + Date.now().toString(36).toUpperCase();
+  var paypalUrl = 'https://paypal.me/' + PAYPAL_USERNAME + '/' + currentPrice + 'USD';
+
+  // Store order
+  var orders = JSON.parse(localStorage.getItem('tf_orders') || '[]');
+  orders.push({ id: orderId, item: currentItem, price: currentPrice, name: name, email: email, date: new Date().toISOString() });
+  localStorage.setItem('tf_orders', JSON.stringify(orders));
+
+  window.open(paypalUrl, '_blank');
+  document.getElementById('checkoutForm').style.display = 'none';
+  document.getElementById('checkoutSuccess').style.display = 'block';
+});
+
+// Scroll animations
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.tpl-card, .feat-item').forEach(function(el) { observer.observe(el); });
+</script>
+</body>
+</html>
