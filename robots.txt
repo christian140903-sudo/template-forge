@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://christian140903-sudo.github.io/template-forge/sitemap.xml
